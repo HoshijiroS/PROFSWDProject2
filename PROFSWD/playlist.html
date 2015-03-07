@@ -1,0 +1,144 @@
+<html>
+	<head>
+	<script src="jquery2.1.3.js" ></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="playlist.css">
+	<script>
+	function addPlaylist(){
+			$("#scroll").append("<div class = 'musicPane'><div class = 'musicBox'><div class = 'dragButton'></div><div class = 'deleteButton'></div><div class = 'editButton'></div><div class = 'playlistName'>Name</div></div></div>");
+		}
+
+
+		var songPaths=[];
+		var currentSongIndex=0;
+
+		var getMusicFiles=function(evt){
+			// console.log(evt.files);
+			// var files=evt.target.files;
+			// console.log(files.length);
+
+
+			for(i=0;i<evt.files.length;i++){
+				songPaths[songPaths.length]=URL.createObjectURL(evt.files[i]);
+			}
+			// console.log(songPaths);
+
+			document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+		}
+		function home(){
+			location.href = 'welcomePage.html';
+		}
+
+		function songs(){
+			location.href = 'play.html';
+		}
+
+		// var songPaths=[];
+		// var songFiles=[];
+		// var currentSongIndex=0;
+		var i = 0;
+		var playlistNames=[];
+
+		var addPlaylist=function(evt){
+			$("#scroll").append
+			("<div class = 'musicPane' id='musicPaneName"+i+"'>"+
+				"<div class = 'musicBox'>"+
+				"<div class = 'dragButton'></div>"+
+				"<div class = 'deleteButton' onclick= 'deletePlaylist("+i+",this)' > </div>"+
+				"<div class = 'editButton' 	 id='editName"+i+"' onclick= 'editPlaylist("+i+")' > </div>"+
+				"<div class = 'playlistName' id='songName"+i+"' onclick = 'songs()'>New Playlist</div>"+
+			"</div>"+
+			"</div>");
+
+			playlistNames[playlistNames.length]=document.getElementById("songName"+i);
+
+			i++
+
+			$(".musicPane").draggable ({ 
+			<!-- distance: 50, -->
+				axis: 'y'
+			});
+					
+		}
+		var resetMusicIndexCount=function(){
+			// <!-- songPaths=[]; -->
+			// <!-- songFiles=[]; -->
+			// <!-- currentSongIndex=0; -->
+			// $("#scroll").children().remove();
+			for(j=0;i<playlistNames.length;j++){ 
+				$("#scroll").append
+				("<div class = 'musicPane' id='musicPaneName"+j+"'>"+
+					"<div class = 'musicBox'>"+
+					"<div class = 'dragButton'></div>"+
+					"<div class = 'deleteButton' onclick= 'deletePlaylist("+j+",this)' > </div>"+
+					"<div class = 'editButton' 	 id='editName"+j+"' onclick= 'editPlaylist("+j+")' > </div>"+
+					"<div class = 'playlistName' id='songName"+j+"' onclick = 'songs()'>New Playlist</div>"+
+				"</div>"+
+				"</div>");
+			}
+		}
+
+
+
+		var editPlaylist=function(index){
+			var name = prompt("Please enter a new name: ");
+				if(name != null){
+					document.getElementById("songName"+index).innerHTML = name;
+				}
+		}
+
+		var deletePlaylist=function(index, item){
+			$(item).parent().parent().remove();
+			// $("scroll").children()[index].remove();	
+				// playlistNames[index].splice(index, 1);
+				// resetMusicIndexCount();
+				// i--;
+				// $("#scroll").append
+				// ("<div class = 'musicPane' id='musicPaneName"+i+"'>"+
+				// 	"<div class = 'musicBox'>"+
+				// 	"<div class = 'dragButton'></div>"+
+				// 	"<div class = 'deleteButton' onclick= 'deleteSong("+i+",this)' > </div>"+
+				// 	"<div class = 'editButton' 	 id='editName"+i+"' onclick= 'editSong("+i+")' > </div>"+
+				// 	"<div class = 'playlistName' id='songName"+i+"' onclick = 'songs()'>New Playlist</div>"+
+				// "</div>"+
+				// "</div>");
+			}
+			
+
+			// document.getElementById('files').addEventListener('change', getMusicFiles, false);
+
+		// });
+
+
+	</script>
+	</head>
+	
+	<body>
+	
+		<div class = 'container'>
+			<!--<div class = 'buttonPane'>
+				<!--<input type = 'image' onclick = "click1()" src = "loudspeaker1.png" height = '100px' width = '100px' hspace = '20'></button>
+				<input type = "image" onclick = "click1()" src = "cd1.png" hspace = '20'></button>
+				<input type = "image" onclick = "home()" src = "modiNote1.png" height = '100px' width = '100px' hspace = '20'></button>
+			</div>-->
+			<font color = 'white'>
+			<div class = 'musicIcon' onclick = 'home()'>Apollo</div>
+			</font>		
+			<div class = 'loginPane'>
+				<div class = 'signUpPane'>
+					<font color = 'white'>
+						<!-- 
+							<input type="file" id="files" name="files[]" onchange="getMusicFiles(this)" multiple >
+							<audio controls id="mySongPlayer">
+								<source type="audio/mp3">
+							</audio>							
+						<!--  -->
+						<div class = 'scrollPane' id = 'scroll'>
+						</div>
+						<div class = 'addPane' onclick = 'addPlaylist()'></div>
+					</font>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,145 @@
+body{
+			height: 100%;
+			width: 100%;
+			margin: 0;
+		}
+
+		.container {
+			position: relative;
+			text-align: center;
+			height: 100%;
+			width: 100%;
+			background-image: url('2.jpg');
+			background-repeat: repeat;
+		}
+
+		.signUpPane{
+			top: 2%;
+			position: relative;
+			width: 50%;
+			height: 70%;
+			margin: auto;
+		}
+
+		.loginPane{
+			position: relative;
+			width: 50%;
+			height: 70%;
+			margin: auto;
+			text-align: center;
+			opacity: 0.45;
+			background-color: black;
+		}
+		
+		.musicIcon{
+			position: relative;
+			margin: auto;
+			height: 100px;
+			width: 800px;
+			padding: 30px;
+			opacity: 0.75;
+			background-position: center;
+			font-family: Cane;
+			font-size: 90px;
+		}
+
+		.buttonDesign{
+			display: block;
+			margin:0 auto; 
+			background: #E66565;
+			color: #FFF;
+			font-family: Cane;
+			opacity: 1.0;
+			font-size: 30px;
+			width: 170px;
+			padding: 2px;
+			min-width: 90px;
+			border:0.5px solid rgba(0,0,0,0.098);
+			border-radius: 2px;
+		}
+
+		@font-face {
+			font-family: Flor;
+			src: url(Florsn35.ttf);
+		}
+
+		@font-face {
+			font-family: Grand;
+			src: url(GrandHotel-Regular.ttf);
+		}
+
+		@font-face {
+			font-family: Randy;
+			src: url(Randy.ttf);
+		}
+
+		@font-face {
+			font-family: Sofia;
+			src: url(Sofia-Regular.ttf);
+		}
+
+		@font-face {
+			font-family: Prelude;
+			src: url(PreludeFLF.ttf);
+		}
+
+		@font-face {
+			font-family: Cane;
+			src: url(CaneletterScript_PersonalUse.otf);
+		}
+
+		@font-face {
+			font-family: Lilly;
+			src: url(LillyBelle_2.ttf);
+		}
+
+		@font-face {
+			font-family: Ind;
+			src: url(IndiansLives.ttf);
+		}
+		
+		@font-face {
+			font-family: ARata;
+			src: url(AuthenticRatatouille.otf);
+		}
+		
+
+		@font-face {
+			font-family: Walkway;
+			src: url(Walkway.ttf);
+		}
+		
+		@font-face {
+			font-family: WalkwayB;
+			src: url(EuropeUnderground_black.ttf);
+		}
+
+		@font-face {
+			font-family: Abs;
+			src: url(Absolut_Pro_LightCondensed.ttf);
+		}
+			
+		div {
+			font-family: Randy;
+			font-size: 25px;
+		}
+
+		.default {
+		  background: white;
+		}
+
+		form {
+			display: inline-block;
+			position: relative;
+			left: 5px;
+		}
+
+		br { 
+			display: block; 
+			margin-top: 10px; 
+			line-height: 10px; 
+		}
+
+		.incorrect {
+		  background: red;
+		}

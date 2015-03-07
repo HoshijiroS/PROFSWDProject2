@@ -1,0 +1,32 @@
+<html>
+<body>
+	<!-- <table>
+		<tr>
+			Username
+		</tr>
+		<tr>
+			<td><input type="text"></td>
+		</tr>
+		<tr>
+			<td>Password</td>
+		</tr>
+		<tr>
+			<td><input type="text"></td>
+		</tr>
+		<tr>
+			<td><button>Submit</button> </td>
+		</tr>
+	</table> -->
+	<div class="well">
+	  <%= form_for @user, html: { multipart: true } do |f| %>
+	    <%= f.label :username %>
+	    <%= f.text_field :username %>
+	    <%= f.label :password %>
+	    <%= f.password_field :password %>
+	    <%= f.submit "Save", class: "btn btn-primary" %>
+	  <% end %>
+	  <%= link_to "Done", new_song_path, class: "btn btn-primary" %>
+</div>
+</div>
+</body>
+</html>

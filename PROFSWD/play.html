@@ -1,0 +1,201 @@
+<html>
+	<head>
+	<script src="jquery2.1.3.js" ></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<link rel="stylesheet" type="text/css" href="play.css">
+	<script>
+	var home=function(){
+			location.href = "welcomePage.html";
+		}
+
+		var play=function(){
+			// console.log("play");
+			if(document.getElementById('mySongPlayer').paused) {
+				document.getElementById('mySongPlayer').play();
+				document.getElementById('playPause').style.backgroundImage = "url('blankSpace.png')";
+				document.getElementById('playPause').style.backgroundImage = "url('pause.png')";
+			}
+			else{
+				document.getElementById('mySongPlayer').pause();
+				document.getElementById('playPause').style.backgroundImage = "url('blankSpace.png')";
+				document.getElementById('playPause').style.backgroundImage = "url('play.png')";
+			}
+			// document.getElementById("mySongPlayer").play();	
+			document.getElementById('songName').innerHTML = songFiles[currentSongIndex].name;
+		}
+		var prev=function(){
+			// console.log("prev");
+			console.log(currentSongIndex+" before minus");
+			if(songPaths.length>0){
+				currentSongIndex--;	
+				currentSongIndex%=songPaths.length;
+				if(currentSongIndex<0){
+					currentSongIndex+=songPaths.length
+				}
+				// console.log(currentSongIndex+" after minus");
+				
+				document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+				play();
+			}
+		}
+		var next=function (){
+			// console.log("next");
+			if(songPaths.length>0){
+				currentSongIndex++;
+				currentSongIndex%=songPaths.length;
+
+				document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+				play();
+			}
+		}
+		// $( document ).ready(function() {
+			var songPaths=[];
+			var currentSongIndex=0;
+
+			var getMusicFiles=function(evt){
+				// console.log(evt.files);
+				// var files=evt.target.files;
+				// console.log(files.length);
+
+
+				for(i=0;i<evt.files.length;i++){
+					songPaths[songPaths.length]=URL.createObjectURL(evt.files[i]);
+				}
+				// console.log(songPaths);
+
+				document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+			}
+
+			function songs(){
+				location.href = 'loginPage.html';
+			}
+
+			var songPaths=[];
+			var songFiles=[];
+			var currentSongIndex=0;
+			
+
+			var addSongs=function(evt){
+				console.log(evt.files);
+				<!-- songFiles = evt.files; -->
+		  
+				for(i=0;i<evt.files.length;i++){
+					songFiles[songFiles.length]=evt.files[i];
+					songPaths[songPaths.length]=URL.createObjectURL(evt.files[i]);
+				}
+				console.log(evt.files);
+
+				document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+				<!-- generateMusicPlaylist(); -->
+				
+				for(i=0;i<evt.files.length;i++){ 
+					$("#scroll").append
+					("<div class = 'musicPane'>"+
+						"<div class = 'dragButton'></div>"+
+						"<div class = 'deleteButton' onclick='deleteSong("+i+",this)'></div>"+
+						"<div class = 'editButton' 	 onclick='editSong("+i+")'></div>"+
+						"<div class = 'playlistName' id='songName"+i+"'>"+
+							evt.files[i].name +
+						"</div>"+
+					"</div>");
+				}
+
+				$(".musicPane").draggable ({ 
+				<!-- distance: 50, -->
+					axis: 'y'
+				});
+					
+			}
+	
+			var deleteSong=function(index, item){
+				console.log("index is "+index);
+				if(currentSongIndex!=index){
+					songPaths.splice(index, 1);
+					songFiles.splice(index, 1);
+					$(item).parent().remove();
+					resetMusicIndexCount();
+				}
+				else{
+					alert("The file is currently in use");
+				}
+			}
+			var resetMusicIndexCount=function(){
+				// <!-- songPaths=[]; -->
+				// <!-- songFiles=[]; -->
+				// <!-- currentSongIndex=0; -->
+				$("#scroll").children().remove();
+				for(i=0;i<songFiles.length;i++){ 
+					$("#scroll").append
+					("<div class = 'musicPane'>"+
+						"<div class = 'dragButton'></div>"+
+						"<div class = 'deleteButton' onclick='deleteSong("+i+",this)'></div>"+
+						"<div class = 'editButton' 	 onclick='editSong("+i+")'></div>"+
+						"<div class = 'playlistName' onclick = 'songs()'>"+
+							songFiles[i].name +
+						"</div>"+
+					"</div>");
+				}
+			}
+
+			var editSong=function(index){
+			var name = prompt("Please enter a new name: ");
+				if(name != null){
+					document.getElementById("songName"+index).innerHTML = name;
+				}
+				
+			function home(){
+			location.href = 'welcomePage.html';
+		}
+		}
+			
+			// document.getElementById('files').addEventListener('change', getMusicFiles, false);
+
+		// });
+
+	</script>
+	</head>
+	
+	<body>
+	
+		<div class = 'container'>
+			<!--<div class = 'buttonPane'>
+				<!--<input type = 'image' onclick = "click1()" src = "loudspeaker1.png" height = '100px' width = '100px' hspace = '20'></button>
+				<input type = "image" onclick = "click1()" src = "cd1.png" hspace = '20'></button>
+				<input type = "image" onclick = "home()" src = "modiNote1.png" height = '100px' width = '100px' hspace = '20'></button>
+			</div>-->
+			<font color = 'white'>
+			<div class = 'musicIcon' onclick = 'home()'>Apollo</div>
+			</font>		
+			<div class = 'loginPane'>
+				<div class = 'signUpPane'>
+					<font color = 'white'>
+						<!-- 
+							<input type="file" id="files" name="files[]" onchange="getMusicFiles(this)" multiple >
+							<audio controls id="mySongPlayer">
+								<source type="audio/mp3">
+							</audio>							
+						<!--  -->
+							<div class = 'nowPlaying'>
+							<div class = 'playingSong' id = 'songName'>Select a Song</div>
+							 <div class = 'controlPane'>
+							 <div class = 'controlDiv'>
+								<div class = 'prev' onclick = "prev();"></div>
+								<div class = 'play' onclick = "play();" id = 'playPause'></div>
+								<div class = 'next' onclick = "next();"></div>
+							 </div>
+							 </div>
+							<audio controls id="mySongPlayer" >
+								<source type="audio/mp3">
+							</audio>
+						</div>
+
+						<div class = 'scrollPane' id = 'scroll'></div>
+						<div class = 'addPane'>
+							<input type='file' id='file_browse' onchange = 'addSongs(this)' multiple/>
+						</div>
+					</font>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

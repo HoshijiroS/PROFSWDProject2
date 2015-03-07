@@ -1,0 +1,93 @@
+<html>
+<head>
+	<script src="jquery2.1.3.js" ></script>
+	<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+	<script>
+		var play=function(){
+			<!-- console.log("play"); -->
+			document.getElementById("mySongPlayer").play();	
+		}
+		var prev=function(){
+			<!-- console.log("prev"); -->
+
+			if(songPaths.length>0){
+				currentSongIndex--;	
+				currentSongIndex%=songPaths.length;
+
+				document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+				play();
+			}
+		}
+		var next=function (){
+			<!-- console.log("next"); -->
+			if(songPaths.length>0){
+				currentSongIndex++;
+				currentSongIndex%=songPaths.length;
+
+				document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+				play();
+			}
+		}
+		// $( document ).ready(function() {
+		var songPaths=[];
+		var currentSongIndex=0;
+	
+	    var getMusicFiles=function (evt) {
+	  
+			for(i=0;i<evt.files.length;i++){
+				songPaths[songPaths.length]=URL.createObjectURL(evt.files[i]);
+			}
+			console.log(evt.files);
+
+			document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+			// <!-- generateMusicPlaylist(); -->
+			
+			for(i=0;i<evt.files.length;i++){ 
+				$("#musicContainer").append
+					("<div class='music' id='musicIndex"+i+"' onClick='selectMusic("+i+")' "+
+					" style='background-color:lightblue;height:100px;vertical-align:text-top'>"+
+					evt.files[i].name+
+					"</div>"); 
+			}
+			$(".music").draggable ({ 
+			// <!-- distance: 50, -->
+				axis: 'y'
+			});
+			
+		}
+		var selectMusic=function(index){
+			currentSongIndex=index;
+			document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+			console.log(index);
+			
+			play();
+		}
+
+	  
+	</script>
+	</head>
+	
+<body>
+	<input type="file" id="files" name="files[]" onchange="getMusicFiles(this)" 
+	multiple style="width:700px">
+	<br>
+	<!-- <output id="list"></output> -->
+	
+	<audio controls id="mySongPlayer" >
+		<source type="audio/mp3">
+	</audio>
+	<br>
+	<button onclick="play()">play</button>
+	<button onclick="prev()">prev</button>
+	<button onclick="next()">next</button>
+	<br>
+	<div id="musicContainer">
+	
+		<!-- <div class="music" id="blue"style= "background-color:lightblue; width:100px;height:100px"></div>  -->
+		<!-- <div class="music" id="green"style="background-color:lightgreen;width:100px;height:100px"></div>  -->
+	</div>
+	<script>
+		
+	</script>
+</body>
+</html>

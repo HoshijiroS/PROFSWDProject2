@@ -1,0 +1,100 @@
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="register.css">
+	<script>
+
+	String.prototype.trim = function(){
+			return this.replace(/^\s+|\s+$/g,"");
+		}
+
+		function checkFields(){
+			var check = true;
+			
+			if(document.getElementById('username').value.trim() == ''){
+				document.getElementById('username').className = 'incorrect';
+				check = false;
+			  }else	
+				document.getElementById('username').className  = 'default';
+				localStorage.setItem('username', document.getElementById('username').value);
+			
+			if(document.getElementById('firstname').value.trim() == ''){
+				document.getElementById('firstname').className = 'incorrect';
+				check = false;
+				localStorage.setItem('name', document.getElementById('firstname').value);
+			  }else	
+				document.getElementById('firstname').className  = 'default';
+				
+			 if(document.getElementById('lastname').value.trim() == ''){
+				document.getElementById('lastname').className  = 'incorrect';
+				check = false;
+			  }else
+				document.getElementById('lastname').className = 'default';
+
+			if(document.getElementById('confpassword').value.trim() == '' && document.getElementById('password').value.trim() == ''){
+				document.getElementById('confpassword').className = 'incorrect';
+				document.getElementById('password').className = 'incorrect';
+				check = false;
+			  }else{
+				document.getElementById('password').className = 'default';
+				document.getElementById('confpassword').className = 'default';
+				localStorage.setItem('password', document.getElementById('password').value);
+				if(document.getElementById('password').value != document.getElementById('confpassword').value){
+					document.getElementById('password').className = "incorrect";
+					document.getElementById('confpassword').className = "incorrect";
+					check = false;
+					alert("Please check if the passwords match.");
+				}
+				}
+			if(document.getElementById('email').value.trim() == ''){
+				document.getElementById('email').className = 'incorrect';
+				check = false;
+			  }else{
+				document.getElementById('email').className = 'default';
+				if(!(document.getElementById('email').value.indexOf("@") > -1 && document.getElementById('email').value.indexOf(".com") > -1)){
+					check = false;
+					alert("Please enter a valid E-mail address.");
+					}
+				}
+			//Write to database;
+				
+			if(check){
+				location.href = "welcomePage.html";
+			}
+		}
+	</script>
+	</head>
+
+	<body>
+
+		<div class = 'container'>
+			<font color = 'white'>
+			<div class = 'musicIcon'>Register</div>
+			<div class = 'loginPane'>
+				<div class = 'signUpPane'>
+						<form>
+							Username:<br>
+							<input type="text" id="username">
+							<br>
+							First name:<br>
+							<input type="text" id="firstname">
+							<br>
+							Last name:<br>
+							<input type="text" id="lastname">
+							<br>
+							Password:<br>
+							<input type="password" id="password">
+							<br>
+							Confirm Password:<br>
+							<input type="password" id="confpassword">
+							<br>
+							Email:<br>
+							<input type="email" id="email">
+							<br>
+							</form>
+						<button class = 'buttonDesign' type="button" onclick="checkFields()">Submit!</button>
+					</font>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,121 @@
+	body{
+			height: 100%;
+			width: 100%;
+			margin: 0;
+		}
+
+		.container {
+			position: relative;
+			text-align: center;
+			height: 100%;
+			width: 100%;
+			background-image: url('2.jpg');
+			background-repeat: repeat;
+		}
+
+		.loginPane{
+			position: relative;
+			width: 50%;
+			height: 70%;
+			margin: auto;
+			text-align: center;
+			opacity: 0.45;
+			background-color: black;
+		}
+
+		.welcomePane{
+			position: relative;
+			width: 600px;
+			height: 70%;
+			margin: auto;
+			top: 15%;
+			font-family: LittleDays;
+			text-align: center;
+			opacity: 0.9;
+			background-color: black;
+		}
+
+		.musicIcon{
+			position: relative;
+			margin: auto;
+			height: 100px;
+			width: 600px;
+			padding: 30px;
+			opacity: 0.75;
+			background-position: center;
+			font-family: Cane;
+			font-size: 90px;
+		}
+			
+		.buttonPane{
+			position: relative;
+			float: center;
+			width: 100%;
+			height: 200px;
+			top: -100px;
+			margin: auto;
+			text-align: center;
+		}
+
+		.textPane{
+			position: relative;
+			float: center;
+			font-family: Always;
+			font-size: 70px;
+			width: 600px;
+			height: 100px;
+			margin: auto;
+			top: -35px;
+			text-align: center;
+		}
+
+		.incorrect {
+		  background: red;
+		}
+
+		@font-face {
+			font-family: Always;
+			src: url(Lifesavers-Bold.ttf);
+		}
+
+		@font-face {
+			font-family: LittleDays;
+			src: url(LittleDaysAlt.ttf);
+		}
+
+		@font-face {
+			font-family: Randy;
+			src: url(Randy.ttf);
+		}
+
+		@font-face {
+			font-family: Cane;
+			src: url(CaneletterScript_PersonalUse.otf);
+		}
+
+		div {
+			font-family: Little;
+			font-size: 70px;
+		}
+
+		.default {
+		  background: white;
+		}
+
+		form {
+			display: inline-block;
+			position: relative;
+			left: 5px;
+		}
+
+		br { 
+			display: block; 
+			margin-top: 0px; 
+			line-height: 0px; 
+		}
+		
+		h5{
+			font-family: LittleDays;
+			font-size: 30px;
+			display: inline-block;
+		}

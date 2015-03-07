@@ -1,0 +1,87 @@
+<html>
+<head>
+<style>
+
+.container {
+		position: relative;
+		text-align: center;
+		height: 100%;
+		background-image: url('mint-green-polka-dots.png');
+		background-repeat: repeat;
+	}
+
+.loginPane{
+		position: relative;
+		width: 400px;
+		height: 450px;
+		top: 100px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 5px;
+		background-color: #87D187;
+	}
+	
+.summaryBox{
+		position: relative;
+		width: 300px;
+		height: 300px;
+		top: 65px;
+		margin-left: auto;
+		margin-right: auto;
+		padding: 5px;
+		background-color: white;
+}
+
+.removeButton{
+		float:right;
+		position:relative;
+		top: -5px;
+		right: 10px;
+		text-align: right;
+		width: 100px;
+		height: 100px;
+		content:url(photo.png);
+	}
+
+@font-face {
+		font-family: Normal;
+		src: url(Dunkin.ttf);
+	}
+	
+div {
+		font-family: Normal;
+		font-size: 20px;
+	}
+
+.positionH2{
+	position:relative;
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+	height: 300px;
+}
+
+.default {
+  background: white;
+}
+
+</style>
+</head>
+
+<body>
+<div class = 'container'>
+<div class = 'loginPane'>
+<div class = 'summaryBox'>
+<font color = '#5E835E'>
+	<h4 class = 'positionH2' id = 'text'>Hey!</h4>
+	<script>
+		document.getElementById('text').innerHTML = 'Hello ' + localStorage.getItem('name') + ", you have bought " + localStorage.getItem('quantity') + " items amounting to " + localStorage.getItem('price') + " pesos. Have a nice day!";
+	</script>
+</font>
+</div>
+<div class = 'removeButton'>
+</div>
+</div>
+</div>
+</body>
+</html>

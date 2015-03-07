@@ -1,0 +1,339 @@
+<html>
+	<head>
+	<script src="jquery2.1.3.js" ></script>
+	<style>
+
+		body{
+			height: 100%;
+			width: 100%;
+			margin: 0;
+		}
+
+		.container {
+			position: relative;
+			text-align: center;
+			height: 100%;
+			width: 100%;
+			background-image: url('2.jpg');
+			background-repeat: repeat;
+		}
+
+		.loginPane{
+			position: relative;
+			width: 50%;
+			height: 70%;
+			margin: auto;
+			text-align: center;
+			opacity: 0.45;
+			background-color: black;
+		}
+		
+		.musicIcon{
+			position: relative;
+			margin: auto;
+			height: 100px;
+			width: 600px;
+			padding: 30px;
+			opacity: 0.75;
+			background-position: center;
+			font-family: Cane;
+			font-size: 90px;
+		}
+		
+		.playIcon{
+			position: relative;
+			margin: auto;
+			height: 100px;
+			width: 100px;
+			padding: 30px;
+			background-position: center;
+			background-image: url('cd.png');
+			background-repeat: no-repeat;
+			background-size: 100px 100px;
+		}
+		
+		.streamIcon{
+			position: relative;
+			margin: auto;
+			height: 100px;
+			width: 100px;
+			padding: 30px;
+			background-position: center;
+			background-image: url('loudspeaker.png');
+			background-repeat: no-repeat;
+			background-size: 100px 100px;
+		}
+		
+		.homeIcon{
+			position: relative;
+			margin: auto;
+			height: 100px;
+			width: 100px;
+			padding: 30px;
+			background-position: center;
+			background-image: url('modiNote.png');
+			background-repeat: no-repeat;
+			background-size: 75px 75px;
+		}
+			
+		.scrollPane{
+			position: relative;
+			padding: vertical horizontal;
+			width: 75%;
+			margin: auto;
+			height: 85%;
+			line-height: 1em;
+			overflow: auto;
+			padding: 5px;
+			background-color: white;
+		}	
+
+		.addPane{
+			position: relative;
+			width: 100px;
+			top: 5px;
+			margin: auto;
+			height: 50px;
+			background-size: 50px 50px;
+			background-image: url('add.png');
+			background-repeat: no-repeat;
+			background-position: center;
+		}	
+		
+		.musicPane{
+			position: relative;
+			width:100%;
+			height: 50px;
+			margin: auto;position: relative;
+			width:100%;
+			height: 50px;
+			margin: auto;
+			margin-bottom: 5px;
+			background-color: #ff5454;
+		}
+
+		.musicBox{
+			position: relative;
+			width:100%;
+			height: 50px;
+			margin: auto;
+			background-color: #ff5454;
+		}
+
+		.playlistName{
+			position: relative;
+			float: left;
+			width: 70%;
+			height: 25px;
+			margin: auto;
+			top: 12px;
+			text-align: left;
+			left: 20px;
+			font-family: Randy;
+			font-size: 20px;
+		}
+
+		.playingSong{
+			position: relative;
+			width:75%;
+			height: 25px;
+			top: -30px;
+			margin: auto;
+			font-family: Randy;
+			font-size: 20px;
+		}
+		
+		.nowPlaying{
+			position: relative;
+			padding: vertical horizontal;
+			width: 90%;
+			margin: auto;
+			height: 70px;
+			line-height: 3em;
+			overflow: auto;
+			padding: 5px;
+			background-color: #4d453c;
+		}
+
+		.controlPane{
+			position: relative;
+			float: bottom;
+			padding: vertical horizontal;
+			width: 90%;
+			top: -5px;
+			margin: auto;
+			height: 40%;
+			background-color: #4d453c;
+		}
+		
+		.signUpPane{
+			top: 1.9%;
+			position: relative;
+			width: 75%;
+			height: 75%;
+			margin: auto;
+		}
+
+		.deleteButton{
+			position: relative;
+			float: right;
+			top: 14px;
+			right: 10px;
+			height: 20px;
+			width: 20px;
+			background-image: url('delete.png');
+			background-size: 20px 20px;
+		}
+
+
+		.dragButton{
+			position: relative;
+			float: left;
+			top: 10px;
+			left: 10px;
+			height: 30px;
+			width: 20px;
+			background-image: url('drag.png');
+			background-size: 20px 30px;
+		}
+
+		.editButton{
+			position: relative;
+			float: right;
+			top: 14px;
+			right: 25px;
+			height: 20px;
+			width: 20px;
+			background-image: url('edit.png');
+			background-position: center;
+			background size: 20px 20px;
+		}
+
+		@font-face {
+			font-family: Cane;
+			src: url(CaneletterScript_PersonalUse.otf);
+		}
+
+		@font-face {
+			font-family: Randy;
+			src: url(Randy.ttf);
+		}
+
+		@font-face {
+			font-family: Nova;
+			src: url(Florsn35.ttf);
+		}
+		
+		@font-face {
+			font-family: Walkway;
+			src: url(Walkway.ttf);
+		}
+			
+		div {
+			font-family: Walkway;
+			font-size: 25px;
+		}
+
+	</style>
+	
+	<script>
+		var home=function(){
+			location.href = "welcomePage.html";
+		}
+
+		var play=function(){
+			// console.log("play");
+			document.getElementById("mySongPlayer").play();	
+		}
+		var prev=function(){
+			// console.log("prev");
+
+			if(songPaths.length>0){
+				currentSongIndex--;	
+				currentSongIndex%=songPaths.length;
+
+				document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+				play();
+			}
+		}
+		var next=function (){
+			// console.log("next");
+			if(songPaths.length>0){
+				currentSongIndex++;
+				currentSongIndex%=songPaths.length;
+
+				document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+				play();
+			}
+		}
+		// $( document ).ready(function() {
+			var songPaths=[];
+			var currentSongIndex=0;
+
+			var getMusicFiles=function(evt){
+				// console.log(evt.files);
+				// var files=evt.target.files;
+				// console.log(files.length);
+
+
+				for(i=0;i<evt.files.length;i++){
+					songPaths[songPaths.length]=URL.createObjectURL(evt.files[i]);
+				}
+				// console.log(songPaths);
+
+				document.getElementById("mySongPlayer").src=songPaths[currentSongIndex];
+			}
+
+			function songs(){
+				location.href = 'loginPage.html';
+			}
+
+			function addPlaylists(){
+				//var playlist = new Array();
+				$(".scrollPane").append("<div class = 'musicPane'><div class = 'musicBox'><div class = 'dragButton'></div><div class = 'deleteButton'></div><div class = 'editButton'></div><div class = 'playlistName' onclick = 'songs()'>Playlist name</div></div></div>");
+			}
+
+			// document.getElementById('files').addEventListener('change', getMusicFiles, false);
+
+		// });
+	</script>
+	
+	</head>
+	
+	<body>
+	
+		<div class = 'container'>
+			<!--<div class = 'buttonPane'>
+				<!--<input type = 'image' onclick = "click1()" src = "loudspeaker1.png" height = '100px' width = '100px' hspace = '20'></button>
+				<input type = "image" onclick = "click1()" src = "cd1.png" hspace = '20'></button>
+				<input type = "image" onclick = "home()" src = "modiNote1.png" height = '100px' width = '100px' hspace = '20'></button>
+			</div>-->
+			<font color = 'white'>
+			<div class = 'musicIcon' onclick = 'home()'>Apollo</div>
+			</font>		
+			<div class = 'loginPane'>
+				<div class = 'signUpPane'>
+					<font color = 'white'>
+						<!-- 
+							<input type="file" id="files" name="files[]" onchange="getMusicFiles(this)" multiple >
+							<audio controls id="mySongPlayer">
+								<source type="audio/mp3">
+							</audio>							
+						<!--  -->
+							<div class = 'nowPlaying'>
+							<div class = 'playingSong'>Current Song</div>
+							 <div class = 'controlPane'>
+								<input type = "image" onclick = "prev();" src = "prev.png" hspace = '20'></button>
+								<input type = "image" onclick = "play();" src = "play.png" hspace = '20'></button>
+								<input type = "image" onclick = "next();" src = "next.png" hspace = '20'></button>
+							 </div>
+						</div>
+
+						<div class = 'scrollPane' id = 'scroll'></div>
+						<div class = 'addPane' onclick = 'addPlaylists()'></div>
+					</font>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

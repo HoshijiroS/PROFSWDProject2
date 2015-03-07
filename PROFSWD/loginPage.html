@@ -1,0 +1,43 @@
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="loginPage.css">
+	<script>
+	function checkFields(){
+			if(localStorage.getItem('username') == document.getElementById('firstname').value 
+			&& localStorage.getItem('password') == document.getElementById('password').value){
+				location.href = 'welcomePage.html'
+			}
+		}
+
+		function signUp(){
+			location.href = "register.html"
+		}
+	</script>
+	</head>
+
+	<body>
+
+		<div class = 'container'>
+					<font color = 'white'>
+			<div class = 'musicIcon'>Apollo</div>
+			
+			<div class = 'loginPane'>
+				<div class = 'regularPane'>
+						<form>
+							Username:<br>
+							<input type="text" id="firstname">
+							<br>
+		
+							Password:<br>
+							<input type="password" id="password">
+							<br>
+						</form>
+					<button class = 'buttonDesign' type="button" onclick="checkFields()">Log In</button>
+					<br>
+					<button class = 'buttonDesign' type="button" onclick="signUp()">Sign Up</button>
+					</font>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

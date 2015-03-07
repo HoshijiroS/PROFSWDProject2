@@ -1,0 +1,33 @@
+<% if !flash[:notice].blank? %>
+	<!-- Flash notice is an alert -->
+  <div class="alert alert-info">
+  <%= flash[:notice] %>
+  </div>
+<% end %>
+<br />
+<%= link_to "Upload", new_song_path, class: "btn btn-primary" %>
+	<!-- This is a button -->
+	<!-- New song path is a variable -->
+<br />
+<br />
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Track Name</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @songs.each do |song| %>
+      <tr>
+        <% my_url=song.attachment_url.to_s %>
+        <td>
+          <h2><%= (my_url.split('/')[-1]).gsub('_', ' ') %></h2>
+          <section id="audio">
+          </section>
+          <%= link_to "HTML5 Audio", song.attachment_url.to_s, :class => "html5" %>
+        <td><%= button_to "Delete",  song, method: :delete, class: "btn btn-danger", confirm: "Are you sure that you wish to delete?" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

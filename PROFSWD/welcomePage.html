@@ -1,0 +1,37 @@
+<html>
+	<head>
+	<link rel="stylesheet" type="text/css" href="welcomePage.css">	
+	<script>
+	function play(){
+			location.href = "playlist.html";
+		}
+		
+function logOut(){
+			location.href = "loginPage.html";
+		}
+	</script>
+	</head>
+
+	<body>
+
+		<div class = 'container'>
+			<font color = 'white'>
+			<div class = 'musicIcon'>Apollo</div>
+			<div class = 'loginPane'>
+			<div class = 'welcomePane'>
+				Welcome back,
+				<font color = '#E66565'><div class = 'textPane' id = 'text'></div></font>
+				<script>
+					document.getElementById('text').innerHTML = localStorage.getItem('username') + "! ";
+				</script>
+				</div>
+				<div class = 'buttonPane'>
+					<input type = "image" onclick = "play()" src = "cd.png" hspace = '20'></button>
+					<input type = "image" onclick = "click1()" src = "loudspeaker.png" hspace = '20'></button>
+					<input type = "image" onclick = "logOut()" src = "exit.png" hspace = '20'></button>
+				</div>
+			</div>
+		</font>
+		</div>
+	</body>
+</html>
